@@ -1,48 +1,61 @@
+import axios from 'axios';
+import debounce from 'lodash.debounce';
+
 const searchInput = document.querySelector('input');
 
-searchInput.addEventListener('input', onSearchInput);
-
-const key = '5e0ca358c6a85ef9a9e43b6452e61748';
+searchInput.addEventListener('input', debounce(onSearchInput, 1000));
 
 async function onSearchInput(e) {
+  axios.defaults.baseURL = 'https://api.themoviedb.org/3/search/movie';
   const query = e.target.value;
 
-  const movies = await fetchMovieByName(query);
+  const moviesID = await getMoviesIDByName(query);
 
-  let markup = renderGallery(movies);
-
-  searchInput.insertAdjacentHTML('afterend', markup);
+  const searchedMovies = await fetchMoviesById(moviesID);
 }
-async function fetchMovieByName(query) {
-    const moviesID = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=5e0ca358c6a85ef9a9e43b6452e61748&query=${query}`
-    )
-        .then(r => r.json())
-        .then(answer => {
-            return answer.results.map(res => res.id);
-        })
-        .catch(e => e);
 
-    let movies = [];
-    await moviesID.forEach(movieID => {
-        fetch(`https://api.themoviedb.org/3/movie/${movieID}?api_key=${key}`)
-            .then(r => r.json())
-            .then(a => {
-                movies.push(a);
-            });
+async function fetchMoviesById(moviesID) {
+  try {
+    if (moviesID.length === 0) {
+      throw new Error('404');
+    }
+    axios.defaults.baseURL = 'https://api.themoviedb.org/3/movie';
+    const movies = [];
+
+    const moviesPromises = moviesID.map(async id => {
+      const result = await axios.get(`/${id}`, {
+        params: {
+          api_key: '5e0ca358c6a85ef9a9e43b6452e61748',
+        },
+      });
+      return result.data;
     });
+
+    for (const moviePromise of moviesPromises) {
+      movies.push(await moviePromise);
+    }
+
     return movies;
+  } catch (error) {
+      console.log(error);
+  }
 }
-function renderGallery(moviesArr) {
-  console.log(moviesArr);
-  return moviesArr
-    .map(
-      movie =>
-        `
-        <div>
-            <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" alt=""></img>
-        </div>
-        `
-    )
-    .join('');
+
+async function getMoviesIDByName(seachingQuery) {
+  try {
+    const response = await axios.get('', {
+      params: {
+        api_key: '5e0ca358c6a85ef9a9e43b6452e61748',
+        query: seachingQuery,
+      },
+    });
+
+    if (response.data.results.length === 0) {
+      throw new Error('404');
+    }
+
+    return response.data.results.map(movie => movie.id);
+  } catch (error) {
+    console.log(error);
+  }
 }
