@@ -1,29 +1,29 @@
 import axios from 'axios';
-import debounce from 'lodash.debounce';
+// import debounce from 'lodash.debounce';
 
-const searchInput = document.querySelector('input');
+axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 
-searchInput.addEventListener('input', debounce(onSearchInput, 1000));
+// const searchInput = document.querySelector('input');
 
-async function onSearchInput(e) {
-  axios.defaults.baseURL = 'https://api.themoviedb.org/3/search/movie';
-  const query = e.target.value;
+// searchInput.addEventListener('input', debounce(onSearchInput, 1000));
 
-  const moviesID = await getMoviesIDByName(query);
+// async function onSearchInput(e) {
+//   const query = e.target.value;
 
-  const searchedMovies = await fetchMoviesById(moviesID);
-}
+//   const moviesID = await getMoviesIDByName(query);
+
+//   const searchedMovies = await fetchMoviesById(moviesID);
+// }
 
 async function fetchMoviesById(moviesID) {
   try {
     if (moviesID.length === 0) {
       throw new Error('404');
     }
-    axios.defaults.baseURL = 'https://api.themoviedb.org/3/movie';
     const movies = [];
 
     const moviesPromises = moviesID.map(async id => {
-      const result = await axios.get(`/${id}`, {
+      const result = await axios.get(`/movie/${id}`, {
         params: {
           api_key: '5e0ca358c6a85ef9a9e43b6452e61748',
         },
@@ -43,7 +43,7 @@ async function fetchMoviesById(moviesID) {
 
 async function getMoviesIDByName(seachingQuery) {
   try {
-    const response = await axios.get('', {
+    const response = await axios.get('/search/movie', {
       params: {
         api_key: '5e0ca358c6a85ef9a9e43b6452e61748',
         query: seachingQuery,
@@ -58,4 +58,11 @@ async function getMoviesIDByName(seachingQuery) {
   } catch (error) {
     console.log(error);
   }
+}
+export default async function getMoviesByQuery(query) {
+
+  const moviesID = await getMoviesIDByName(query);
+  const searchedMovies = await fetchMoviesById(moviesID);
+
+  return searchedMovies;
 }
