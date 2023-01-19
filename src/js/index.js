@@ -1,2 +1,3 @@
-import './header';
+import './header'
+import './card';
 import './modal';
