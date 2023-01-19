@@ -1,4 +1,4 @@
-const { headerContainer,homeButton, libraryButton, libraryButtonContainer, movieSearchInputContainer, watchedButton, queueButton } = {
+const { formSubmitButton,headerContainer,homeButton, libraryButton, libraryButtonContainer, movieSearchInputContainer, watchedButton, queueButton } = {
   homeButton: document.querySelector('.home-nav-button'),
   libraryButton: document.querySelector('.library-nav-button'),
   libraryButtonContainer: document.querySelector('.library-button-container'),
@@ -6,12 +6,14 @@ const { headerContainer,homeButton, libraryButton, libraryButtonContainer, movie
   watchedButton: document.querySelector('.watched-button'),
   queueButton: document.querySelector('.queue-button'),
   headerContainer: document.querySelector('.header-container'),
+  formSubmitButton: document.querySelector('.form-submit-button')
 };
 
 homeButton.addEventListener('click', homeButtonHandler);
 libraryButton.addEventListener('click', libraryButtonHandler);
 watchedButton.addEventListener('click', watchedButtonHandler);
 queueButton.addEventListener('click', queueButtonHandler);
+formSubmitButton.addEventListener('click', formSubmitButtonHandler);
 
 let headerSearchInput = true;
 headerSearchInput ? libraryButtonContainer.classList.add('hidden') : libraryButtonContainer.classList.remove('hidden');
@@ -45,5 +47,9 @@ function watchedButtonHandler(e) {
 function queueButtonHandler(e) {
   watchedButton.classList.remove('library-active-button')
   queueButton.classList.add('library-active-button')
+}
+
+function formSubmitButtonHandler(e) {
+  e.preventDefault()
 }
 
