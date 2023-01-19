@@ -1,49 +1,35 @@
-import getMovies from './fetchApiByQuery';
-const q = 'zombie'
-onSearchInput(q)
+import getMovieTrends from './fetchAPITrends';
+import { getSingleMovieById } from './fetchApiByQuery';
 
-async function onSearchInput(q) {
-    const a = await getMovies(q);
-    console.log(a);
-    console.log('SFLhf');
+const { cardList } = {
+  cardList: document.querySelector('.card-list'),
+};
+
+getTrendingFilms();
+
+async function getTrendingFilms() {
+    const trendingFilms = await getMovieTrends();
+    
+    trendingFilms.forEach(async (film) => {
+        const filmData = {};
+
+        const filmByID = await getSingleMovieById(film.id);
+        const genres = filmByID.genres;
+        const genresName = [];
+        genres.forEach(genre => {
+            genresName.push(genre.name);
+        })
+        const genresArr = film.genre_ids;
+
+        const releaseDate = film.first_air_date || film.release_date;
+        filmData.url = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
+        filmData.name = film.name || film.original_name || film.original_title;
+        filmData.data = releaseDate.slice(0, 4);
+        filmData.rating = Math.floor(film.vote_average * 10) / 10;
+        filmData.genre = genresName.join(', ');
+        createListItem(filmData);
+    });
 }
-
-
-const {cardList} = {
-    cardList: document.querySelector('.card-list'),
-}
-
-const array = [{ 
-    url: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
-    name: 'GREYHOUND',
-    genre: 'Drama',
-    data: '2020',
-    rating: 10
-}, { 
-    url: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
-    name: 'GREYHOUND',
-    genre: 'Drama',
-    data: '2020',
-    rating: 10
-},{ 
-    url: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
-    name: 'GREYHOUND',
-    genre: 'Drama',
-    data: '2020',
-    rating: 10
-},{ 
-    url: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
-    name: 'GREYHOUND',
-    genre: 'Drama',
-    data: '2020',
-    rating: 10
-},{ 
-    url: 'https://i.natgeofe.com/n/548467d8-c5f1-4551-9f58-6817a8d2c45e/NationalGeographic_2572187_square.jpg',
-    name: 'GREYHOUND',
-    genre: 'Drama',
-    data: '2020',
-    rating: 10
-    }] 
 
 function createListItem({
     url, name, genre, data, rating
@@ -71,9 +57,4 @@ function createListItem({
     item.append(filmInfoContainer)
     cardList.append(item)
 }
-// createListItem(film)
-array.forEach(
-    (film) => {
-    createListItem(film)
-    }
-) 
+
