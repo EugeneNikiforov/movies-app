@@ -54,13 +54,16 @@ async function getMoviesIDByName(seachingQuery) {
 }
 export async function getSingleMovieById(id) {
   try {
-    const { data } = await axios.get(`/movie/${id}`, {
+    const {data} = await axios.get(`/movie/${id}`, {
       params: {
         api_key: '5e0ca358c6a85ef9a9e43b6452e61748',
       },
     });
     return data;
   } catch (error) {
+    if ((error.request.status === 404)) {
+      return
+    }
     console.log(error);
   }
   

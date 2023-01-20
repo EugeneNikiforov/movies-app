@@ -1,10 +1,10 @@
 import getMovieTrends from './fetchAPITrends';
 import { getSingleMovieById } from './fetchApiByQuery';
+import axios from 'axios';
 
 const { cardList } = {
   cardList: document.querySelector('.card-list'),
 };
-
 getTrendingFilms();
 
 async function getTrendingFilms() {
@@ -15,7 +15,7 @@ async function getTrendingFilms() {
 
         const filmByID = await getSingleMovieById(film.id);
         const genres = filmByID.genres;
-        const genresName = [];
+        const genresName = [];  
         genres.forEach(genre => {
             genresName.push(genre.name);
         })
