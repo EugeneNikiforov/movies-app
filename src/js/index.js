@@ -1,3 +1,5 @@
 import './header'
-import './card';
+// import './card';
 import './modal';
+import './fetchAPITrends'
+import './cardTrends'
