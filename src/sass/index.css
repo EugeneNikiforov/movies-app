@@ -513,4 +513,8 @@ input {
   font-size: 12px;
   line-height: 1.6667;
   color: #000000;
+}
+
+.buttons-modal {
+  display: flex;
 }/*# sourceMappingURL=index.css.map */
