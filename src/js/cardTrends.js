@@ -27,7 +27,9 @@ async function getTrendingFilms() {
     filmData.original_title = film.name || film.original_name || film.original_title;
     filmData.first_air_date = releaseDate.slice(0, 4);
     filmData.vote_average = Math.floor(film.vote_average * 10) / 10;
-    filmData.genres = film.genres_name;
+    filmData.genres = film.genres_name.filter(
+      (genre_name, index, array) => array.indexOf(genre_name) === index
+    );;
     createListItem(filmData,elemForModal );
   }
 }
