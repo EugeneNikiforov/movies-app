@@ -8,7 +8,6 @@ async function fetchMoviesById(moviesID) {
       throw new Error('404');
     }
     const movies = [];
-
     const moviesPromises = moviesID.map(async id => {
       const result = await axios.get(`/movie/${id}`, {
         params: {
@@ -66,7 +65,7 @@ export async function getSingleMovieById(id) {
     }
     console.log(error);
   }
-  
+
 }
 
 // export default {
