@@ -74,9 +74,10 @@ class ModalService_ {
     if (load === null) {
       const savedArray = [this.elem];
       LocaleStorageService.saveToLS(listName, savedArray);
+    } else if (load.some(elem => this.elem.id === elem.id)) {
+      return;
     } else {
       load.push(this.elem);
-
       LocaleStorageService.saveToLS(listName, load);
     }
   }
