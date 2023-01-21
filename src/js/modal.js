@@ -1,6 +1,6 @@
 // import axios from 'axios';
 
-import { getSingleMovieById } from './fetchApiByQuery';
+import { getSingleMovieById } from './fetchServices';
 import { LocaleStorageService } from './localeStorage';
 
 const movieCards = document.querySelector('.card-list');

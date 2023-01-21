@@ -1,5 +1,5 @@
 import './header'
 // import './card';
 import './modal';
-import './fetchAPITrends'
-import './cardTrends'
+// import './fetchAPITrends'
+import './createFilmListMarkup'
