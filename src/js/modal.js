@@ -1,5 +1,6 @@
 // import axios from 'axios';
 
+import { getSingleMovieById } from './fetchApiByQuery';
 import { LocaleStorageService } from './localeStorage';
 
 const movieCards = document.querySelector('.card-list');
@@ -16,15 +17,14 @@ const refs = {
   modalOriginalTitle: document.getElementById('modal-original-title'),
   modalGenre: document.getElementById('modal-genre'),
   modalDescr: document.getElementById('modal-descr'),
+  loadingState: document.getElementById('status-loading'),
   watchedBtn: document.getElementById('watchedBtn'),
   queueBtn: document.getElementById('queueBtn'),
 };
 
 class ModalService_ {
   elem = {};
-  toggleModal() {
-    refs.modal.classList.toggle('is-hidden');
-  }
+  isHidden = true;
 
   generateModalContent() {
     refs.modalImg.setAttribute(
@@ -42,25 +42,66 @@ class ModalService_ {
     refs.modalDescr.textContent = this.elem.overview;
   }
 
-  openModal(elem) {
-    this.elem = elem;
-    this.toggleModal();
+  clearModalContent() {
+    refs.modalImg.removeAttribute('src');
+    refs.modalTitle.textContent = '';
+    refs.modalVote.textContent = '';
+    refs.modalVotes.textContent = '';
+    refs.modalPopular.textContent = '';
+    refs.modalOriginalTitle.textContent = '';
+    refs.modalGenre.textContent = '';
+    refs.modalDescr.textContent = '';
+  }
+
+  async openModal(id) {
+    refs.modal.classList.remove('is-hidden');
+    // this.toggleModal();
+    this.isHidden = false;
+    refs.loadingState.classList.remove('hidden-state');
+    this.elem = await getSingleMovieById(id);
+    refs.loadingState.classList.add('hidden-state');
     this.generateModalContent();
   }
+
   closeModal() {
-    this.toggleModal();
+    refs.modal.classList.add('is-hidden');
+    this.isHidden = true;
+    this.clearModalContent();
+  }
+
+  saveToList(listName) {
+    const load = LocaleStorageService.loadFromLS(listName);
+    if (load === null) {
+      const savedArray = [this.elem];
+      LocaleStorageService.saveToLS(listName, savedArray);
+    } else {
+      load.push(this.elem);
+
+      LocaleStorageService.saveToLS(listName, load);
+    }
   }
 
   saveToWatched() {
-    LocaleStorageService.saveToLS('watched', this.elem);
+    this.saveToList('watched');
     this.closeModal();
   }
+
   saveToQueue() {
-    LocaleStorageService.saveToLS('queue', this.elem);
+    this.saveToList('queue');
     this.closeModal();
   }
+
   init() {
     refs.closeModalBtn.addEventListener('click', this.closeModal.bind(this));
+    window.addEventListener('keydown', e => {
+      if (this.isHidden) {
+        return;
+      }
+      if (e.code === 'Escape') {
+        this.closeModal();
+      }
+    });
+
     refs.watchedBtn.addEventListener('click', this.saveToWatched.bind(this));
     refs.queueBtn.addEventListener('click', this.saveToQueue.bind(this));
   }
