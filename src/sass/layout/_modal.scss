@@ -29,11 +29,12 @@
     background-color: #fff;
     padding: 48px 20px 40px;
 
-    @media screen and (min-width: 480px) and (max-width: 768px) {
+    @media screen and (min-width: 480px) and (max-width: 767px) {
+        height: 100%;
         top: 20px;
     }
 
-    @media screen and (min-width: 767px) {
+    @media screen and (min-width: 768px) {
         max-width: 704px;
         display: flex;
         gap: 68px;
