@@ -5,6 +5,7 @@ const { cardList } = {
   cardList: document.querySelector('.card-list'),
 };
 createFilmData().then(arr => {
+  document.querySelector('.loader').classList.add('hidden');
   arr.forEach(film => {
     createListItem(film);
   })
