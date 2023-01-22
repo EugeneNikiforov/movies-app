@@ -1,7 +1,8 @@
 <div class="backdrop-modal is-hidden" id="modal">
     <div class="modal">
+        <div id="status-loading" class="hidden-state">Loading...</div>
         <button id="button-modal-close" type="button" class="modal-close-button"></button>
-        <!-- <img class="modal-image" src="./images/example-first.jpeg" id="modal-img" alt="Poster"> -->
+        <img class="modal-image" id="modal-img" alt="Poster">
         <div class="modal-info">
             <h2 class="modal-info-title" id="modal-title"></h2>
             <table class="modal-table">
@@ -30,10 +31,12 @@
                 <h3 class="modal-about-title">About</h3>
                 <p class="modal-about-text" id="modal-descr"></p>
             </div>
-            <div>
-                <button type="button" class="library-buttons library-active-button watched-button">add to
+            <div class="buttons-modal">
+                <button type="button" class="library-buttons library-buttons-modal watched-button" id="watchedBtn">add
+                    to
                     Watched</button>
-                <button type="button" class='library-buttons queue-button'>add to queue</button>
+                <button type="button" class="library-buttons library-buttons-modal watched-button"
+                    id="queueBtn">queue</button>
             </div>
         </div>
     </div>
