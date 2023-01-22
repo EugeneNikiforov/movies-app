@@ -102,7 +102,17 @@ class ModalService_ {
         this.closeModal();
       }
     });
-
+    window.addEventListener(
+      'click',
+      function (e) {
+        if (
+          !refs.modal.classList.contains('is-hidden') &&
+          e.target == refs.modal
+        ) {
+          this.closeModal();
+        }
+      }.bind(this)
+    );
     refs.watchedBtn.addEventListener('click', this.saveToWatched.bind(this));
     refs.queueBtn.addEventListener('click', this.saveToQueue.bind(this));
   }
