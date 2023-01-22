@@ -1,7 +1,6 @@
 import './header';
-// // import './card';
+// import './card';
 import './modal';
 // import './fetchAPITrends'
 import './createFilmListMarkup';
-// import './paginationnew';
-import './cardnew';
+import './footer-modal';
