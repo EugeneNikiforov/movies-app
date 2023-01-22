@@ -1,9 +1,9 @@
 
 .card-list {
-display: flex;
-flex-wrap: wrap;
-align-items: center;
-justify-content: space-evenly;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 
@@ -20,39 +20,39 @@ justify-content: space-evenly;
 }
 
 .filmName {
-    color:#000000;
-    // font-family: 'Roboto';
+    color: #000000;
+    font-family: 'Roboto';
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
-    text-transform: uppercase
 }
 
 
 .filmInfo {
-    color:#FF6B08;
-    // font-family: 'Roboto';
+    color: #FF6B08;
+    font-family: 'Roboto';
     font-weight: 500;
     font-size: 12px;
     line-height: 14px;
 }
 
 .filmRating {
-font-weight: 500;
-color: #FFF;
-background-color: #FF6B08;
-padding: 3px 8px;
-font-size: 12px;
-line-height: 14px;
-border-radius: 5px;
-margin-left: 10px;
+    font-weight: 500;
+    color: #FFF;
+    background-color: #FF6B08;
+    padding: 3px 8px;
+    font-size: 12px;
+    line-height: 14px;
+    border-radius: 5px;
+    margin-left: 10px;
 }
 
 @media screen and (min-width: 768px) {
-    .card-list{
-    padding-top: 27px;
-    padding-left: 16px;
-    padding-right: 16px;
+    .card-list {
+        padding-top: 27px;
+        justify-content: flex-start;
+        padding-left: 16px;
+        padding-right: 16px;
     }
 }
 
@@ -61,6 +61,7 @@ margin-left: 10px;
     .listItemImage {
         width: 336px;
         height: 494px;
+        margin-bottom: 8px;
     }
 }
 
@@ -68,17 +69,38 @@ margin-left: 10px;
     .listItem {
         width: 336px;
         margin-top: 32px;
+        margin-left: 16px;
+        margin-right: 16px;
     }
 }
 
+@media screen and (min-width: 768px) {
+    .filmName {
+        color: #000000;
+        font-family: 'Roboto';
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
 
+@media screen and (min-width: 768px) {
+    .filmInfo {
+        color: #FF6B08;
+        font-family: 'Roboto';
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}
 
 
 @media screen and (min-width: 1280px) {
     .card-list {
         padding-top: 28px;
-        padding-left: 16px;
-        padding-right: 16px;
+        justify-content: flex-start;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }
 
@@ -87,6 +109,7 @@ margin-left: 10px;
     .listItemImage {
         width: 395px;
         height: 574px;
+        margin-bottom: 12px;
     }
 }
 
@@ -94,8 +117,27 @@ margin-left: 10px;
     .listItem {
         width: 395px;
         margin-top: 32px;
-        // gap: 16px;
-        margin-left: 8px;
-        margin-right: 8px;
+        margin-left: 9px;
+        margin-right: 9px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .filmName {
+        color: #000000;
+        font-family: 'Roboto';
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .filmInfo {
+        color: #FF6B08;
+        font-family: 'Roboto';
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
     }
 }

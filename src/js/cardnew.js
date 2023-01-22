@@ -1,12 +1,12 @@
-import getMovies from './fetchApiByQuery';
-const q = 'zombie'
-onSearchInput(q)
+// import getMovies from './fetchApiByQuery';
+// const q = 'zombie'
+// onSearchInput(q)
 
-async function onSearchInput(q) {
-    const a = await getMovies(q);
-    console.log(a);
-    console.log('SFLhf');
-}
+// async function onSearchInput(q) {
+//     const a = await getMovies(q);
+//     console.log(a);
+//     console.log('SFLhf');
+// }
 
 
 const {cardList} = {
