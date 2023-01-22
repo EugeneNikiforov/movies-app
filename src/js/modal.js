@@ -100,7 +100,6 @@ class ModalService_ {
       }
       if (e.code === 'Escape') {
         this.closeModal();
-        console.log(this.closeModal());
       }
     });
     window.addEventListener(
