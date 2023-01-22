@@ -4,7 +4,7 @@ let page = 10;
 
 createPagination(totalPages, page);
 
-window.addEventListener('resize');
+// window.addEventListener('resize');
 
 function createPagination(totalPages, page) {
   let liTag = '';

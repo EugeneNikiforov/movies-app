@@ -1,5 +1,6 @@
 <div class="backdrop-modal is-hidden" id="modal">
     <div class="modal">
+        <div id="status-loading" class="hidden-state">Loading...</div>
         <button id="button-modal-close" type="button" class="modal-close-button"></button>
         <img class="modal-image" id="modal-img" alt="Poster">
         <div class="modal-info">
@@ -31,10 +32,10 @@
                 <p class="modal-about-text" id="modal-descr"></p>
             </div>
             <div class="buttons-modal">
-                <button type="button" class="library-buttons library-active-button watched-button" id="watchedBtn">add
+                <button type="button" class="library-buttons library-buttons-modal watched-button" id="watchedBtn">add
                     to
                     Watched</button>
-                <button type="button" class="library-buttons library-active-button watched-button"
+                <button type="button" class="library-buttons library-buttons-modal watched-button"
                     id="queueBtn">queue</button>
             </div>
         </div>

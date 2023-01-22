@@ -730,5 +730,7 @@ input {
 }
 
 .icon-arrow {
-  fill: currentColor;
+  fill: currentColor;}
+.hidden-state {
+  display: none;
 }/*# sourceMappingURL=index.css.map */
