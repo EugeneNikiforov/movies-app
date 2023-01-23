@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const apiKey = '5e0ca358c6a85ef9a9e43b6452e61748';
 const params = {
@@ -11,7 +10,9 @@ const params = {
   },
 };
 
-async function getMovieTrends() {
+async function getMovieTrends(page) {
+  params.params.page = page || 1;
+
   try {
     const { data } = await axios.get(
       'https://api.themoviedb.org/3/trending/all/week',
@@ -59,44 +60,44 @@ async function getMovieGenres() {
   return genres;
 }
 
-export async function getTrendingFilms() {
-  const trendingFilms = await getMovieTrends();
+export async function getTrendingFilms(page = 1) {
+  const trendingFilms = await getMovieTrends(page);
   const tvGenres = await getTvGenres();
   const movieGenres = await getMovieGenres();
   const allGenres = [...tvGenres, ...movieGenres];
   trendingFilms.forEach(f => {
-      const uniqGenresName = [];
-      allGenres.forEach(g => {         
-          if (f.genre_ids.includes(g.id)) {
-            uniqGenresName.push(g.name);
-          }
-      });
-      const filtredGenres = uniqGenresName.filter(
-        (genre_name, index, array) => array.indexOf(genre_name) === index
-      );
-      f.genres_name = [...filtredGenres];
+    const uniqGenresName = [];
+    allGenres.forEach(g => {
+      if (f.genre_ids.includes(g.id)) {
+        uniqGenresName.push(g.name);
+      }
+    });
+    const filtredGenres = uniqGenresName.filter(
+      (genre_name, index, array) => array.indexOf(genre_name) === index
+    );
+    f.genres_name = [...filtredGenres];
   });
   return trendingFilms;
 }
 
 export async function getMoviesByName(seachingQuery) {
-    const filmsByQuery = await getMovieByQuery(seachingQuery);
-    const tvGenres = await getTvGenres();
-    const movieGenres = await getMovieGenres();
-    const allGenres = [...tvGenres, ...movieGenres];
-    filmsByQuery.forEach(f => {
-      const uniqGenresName = [];
-      allGenres.forEach(g => {
-        if (f.genre_ids.includes(g.id)) {
-          uniqGenresName.push(g.name);
-        }
-      });
-      const filtredGenres = uniqGenresName.filter(
-        (genre_name, index, array) => array.indexOf(genre_name) === index
-      );
-      f.genres_name = [...filtredGenres];
+  const filmsByQuery = await getMovieByQuery(seachingQuery);
+  const tvGenres = await getTvGenres();
+  const movieGenres = await getMovieGenres();
+  const allGenres = [...tvGenres, ...movieGenres];
+  filmsByQuery.forEach(f => {
+    const uniqGenresName = [];
+    allGenres.forEach(g => {
+      if (f.genre_ids.includes(g.id)) {
+        uniqGenresName.push(g.name);
+      }
     });
-    return filmsByQuery;
+    const filtredGenres = uniqGenresName.filter(
+      (genre_name, index, array) => array.indexOf(genre_name) === index
+    );
+    f.genres_name = [...filtredGenres];
+  });
+  return filmsByQuery;
 }
 
 export async function getSingleMovieById(id) {

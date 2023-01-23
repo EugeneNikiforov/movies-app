@@ -4,5 +4,6 @@ import './modal';
 // import './fetchAPITrends'
 import './createFilmListMarkup';
 import './footer-modal';
+import './pagination';
 
-import './libraryLs'
+import './libraryLs';

@@ -8,42 +8,41 @@
 //     console.log('SFLhf');
 // }
 
-
 // const {cardList} = {
 //     cardList: document.querySelector('.card-list'),
 // }
 
-// const array = [{ 
+// const array = [{
 //     url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU',
 //     name: 'GREYHOUND',
 //     genre: 'Drama',
 //     data: '2020',
 //     rating: 10
-// }, { 
-    // url: ,
-    // name: 'GREYHOUND','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU'
+// }, {
+// url: ,
+// name: 'GREYHOUND','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU'
 //     genre: 'Drama',
 //     data: '2020',
 //     rating: 10
-// },{ 
-    url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU',
+// },{
+// url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU',
 //     name: 'GREYHOUND',
 //     genre: 'Drama',
 //     data: '2020',
 //     rating: 10
-// },{ 
+// },{
 //     url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU',
 //     name: 'GREYHOUND',
 //     genre: 'Drama',
 //     data: '2020',
 //     rating: 10
-// },{ 
+// },{
 //     url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU',
 //     name: 'GREYHOUND',
 //     genre: 'Drama',
 //     data: '2020',
 //     rating: 10
-//     }] 
+//     }]
 
 // function createListItem({
 //     url, name, genre, data, rating
@@ -76,4 +75,4 @@
 //     (film) => {
 //     createListItem(film)
 //     }
-// ) 
+// )
