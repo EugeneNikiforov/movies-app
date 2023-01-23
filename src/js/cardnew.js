@@ -26,7 +26,7 @@
 //     data: '2020',
 //     rating: 10
 // },{ 
-//     url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU',
+    url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU',
 //     name: 'GREYHOUND',
 //     genre: 'Drama',
 //     data: '2020',
