@@ -56,8 +56,13 @@ function createMoviesLs(key) {
            filmData.first_air_date = releaseDate.slice(0, 4);
            filmData.vote_average = Math.floor(film.vote_average * 10) / 10;
 
-          filmData.genres = film.genres.map(el => el.name);
-          // console.log(filmData);
+    filmData.genres = film.genres.map(el => el.name);
+          if (filmData.genres.length > 2) { 
+            filmData.genres = [...filmData.genres.slice(0, 2), 'Other'].join( 
+              ', ' 
+            ); 
+          }
+          console.log(filmData.genres);
           filmsDataArray.push(filmData);
     
           
