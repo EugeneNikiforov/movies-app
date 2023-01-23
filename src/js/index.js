@@ -1,6 +1,8 @@
-import './header'
+import './header';
 // import './card';
 import './modal';
 // import './fetchAPITrends'
-import './createFilmListMarkup'
+import './createFilmListMarkup';
+import './footer-modal';
+
 import './libraryLs'

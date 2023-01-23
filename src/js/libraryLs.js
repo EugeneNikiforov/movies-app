@@ -101,4 +101,3 @@ function setMarkupWatched(watchedLs) {
 //     addMoviesQueue.splice(indexQueue, 1)
 //     //  console.log(indexQueue);
 // }
- console.log(LocaleStorageService.loadFromLS());
