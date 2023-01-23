@@ -40,19 +40,17 @@
     font-weight: 500;
     color: #FFF;
     background-color: #FF6B08;
-    padding: 3px 8px;
+    padding: 3px 12px;
     font-size: 12px;
     line-height: 14px;
     border-radius: 5px;
-    margin-left: 10px;
+    margin-left: 8px;
 }
 
 @media screen and (min-width: 768px) {
     .card-list {
         padding-top: 27px;
         justify-content: flex-start;
-        padding-left: 16px;
-        padding-right: 16px;
     }
 }
 
@@ -99,8 +97,6 @@
     .card-list {
         padding-top: 28px;
         justify-content: flex-start;
-        padding-left: 20px;
-        padding-right: 20px;
     }
 }
 

@@ -9,7 +9,9 @@ export async function createFilmData(page = 1) {
       id: film.id,
     };
     const releaseDate = film.first_air_date || film.release_date;
-    filmData.poster_path = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
+    filmData.poster_path = film.poster_path
+      ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
+      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU';
     filmData.original_title =
       film.name || film.title || film.original_name || film.original_title;
     filmData.first_air_date = releaseDate.slice(0, 4);
@@ -37,7 +39,9 @@ export async function createFilmDataByQuery(query) {
       id: film.id,
     };
     const releaseDate = film.first_air_date || film.release_date;
-    filmData.poster_path = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
+    filmData.poster_path = film.poster_path
+      ? `https://image.tmdb.org/t/p/w500${film.poster_path}`
+      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSwWbgPV-hyMdfBxgfFY_8c7NC_j2x_jO99w&usqp=CAU';
     filmData.original_title =
       film.name || film.title || film.original_name || film.original_title;
     filmData.first_air_date = releaseDate.slice(0, 4);

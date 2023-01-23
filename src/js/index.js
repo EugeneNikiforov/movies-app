@@ -5,3 +5,5 @@ import './modal';
 import './createFilmListMarkup';
 import './footer-modal';
 import './pagination';
+
+import './libraryLs';
