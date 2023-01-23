@@ -1,5 +1,5 @@
 import { createFilmData, createFilmDataByQuery } from './createFilmData';
-import {createListItem} from './createFilmListMarkup';
+import { createListItem } from './createFilmListMarkup';
 
 const {
   headerContainer,
@@ -12,6 +12,7 @@ const {
   searchForm,
   cardList,
   searchInput,
+  logo,
 } = {
   homeButton: document.querySelector('.home-nav-button'),
   searchInput: document.querySelector('.movie-search-input'),
@@ -25,6 +26,7 @@ const {
   headerContainer: document.querySelector('.header-container'),
   searchForm: document.querySelector('.movie-search-form'),
   cardList: document.querySelector('.card-list'),
+  logo: document.querySelector('.header-logo-container'),
 };
 
 homeButton.addEventListener('click', homeButtonHandler);
@@ -33,6 +35,7 @@ watchedButton.addEventListener('click', watchedButtonHandler);
 queueButton.addEventListener('click', queueButtonHandler);
 searchForm.addEventListener('submit', searchFormSubmitHandler);
 searchInput.addEventListener('input', inputChangeHandler);
+logo.addEventListener('click', logoButtonHandler);
 
 let headerSearchInput = true;
 headerSearchInput
@@ -43,13 +46,13 @@ headerSearchInput
   : libraryButtonContainer.classList.add('header-library-bg');
 
 function inputChangeHandler(e) {
-  document.querySelector('.search-error').classList.add('hidden')
-  if (e.target.value === ''){
+  document.querySelector('.search-error').classList.add('hidden');
+  if (e.target.value === '') {
     cardList.innerHTML = '';
     createFilmData().then(arr => {
       arr.forEach(film => {
         createListItem(film);
-      })
+      });
     });
   }
 }
@@ -62,6 +65,15 @@ function homeButtonHandler(e) {
   homeButton.classList.add('active-nav-button');
   libraryButton.classList.remove('active-nav-button');
   headerSearchInput = true;
+
+  cardList.innerHTML = '';
+
+  createFilmData().then(arr => {
+    document.querySelector('.loader').classList.add('hidden');
+    arr.forEach(film => {
+      createListItem(film);
+    });
+  });
 }
 
 function libraryButtonHandler(e) {
@@ -86,14 +98,23 @@ function queueButtonHandler(e) {
 
 async function searchFormSubmitHandler(e) {
   e.preventDefault();
-  try{
+  try {
     const query = e.target.elements['search-input'].value;
     const res = await createFilmDataByQuery(query);
     cardList.innerHTML = '';
     res.forEach(film => createListItem(film));
-  } catch (e){
-    document.querySelector('.search-error').classList.remove('hidden')
+  } catch (e) {
+    document.querySelector('.search-error').classList.remove('hidden');
   }
-
 }
 
+function logoButtonHandler() {
+  cardList.innerHTML = '';
+
+  createFilmData().then(arr => {
+    document.querySelector('.loader').classList.add('hidden');
+    arr.forEach(film => {
+      createListItem(film);
+    });
+  });
+}
