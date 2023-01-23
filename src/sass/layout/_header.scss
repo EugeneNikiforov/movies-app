@@ -91,7 +91,19 @@
   line-height: 16px;
   color: rgba(255, 255, 255, .9);
 }
-
+.search-error {
+  color: #FF001B;
+  margin-top: 20px;
+  text-align: center;
+}
+.movie-search-input-container {
+  padding: 30px 0;
+  height: 116px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 .movie-search-form {
   position: relative;
 }
@@ -108,6 +120,10 @@
   background-repeat: no-repeat;
   outline: none;
   border: none;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.5);
+  }
 }
 
 .library-buttons {

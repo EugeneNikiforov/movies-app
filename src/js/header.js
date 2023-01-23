@@ -1,4 +1,4 @@
-import { createFilmDataByQuery } from './createFilmData';
+import { createFilmData, createFilmDataByQuery } from './createFilmData';
 import {createListItem} from './createFilmListMarkup';
 
 const {
@@ -11,8 +11,10 @@ const {
   queueButton,
   searchForm,
   cardList,
+  searchInput,
 } = {
   homeButton: document.querySelector('.home-nav-button'),
+  searchInput: document.querySelector('.movie-search-input'),
   libraryButton: document.querySelector('.library-nav-button'),
   libraryButtonContainer: document.querySelector('.library-button-container'),
   movieSearchInputContainer: document.querySelector(
@@ -30,6 +32,7 @@ libraryButton.addEventListener('click', libraryButtonHandler);
 watchedButton.addEventListener('click', watchedButtonHandler);
 queueButton.addEventListener('click', queueButtonHandler);
 searchForm.addEventListener('submit', searchFormSubmitHandler);
+searchInput.addEventListener('input', inputChangeHandler);
 
 let headerSearchInput = true;
 headerSearchInput
@@ -38,6 +41,18 @@ headerSearchInput
 headerSearchInput
   ? headerContainer.classList.add('header-home-bg')
   : libraryButtonContainer.classList.add('header-library-bg');
+
+function inputChangeHandler(e) {
+  document.querySelector('.search-error').classList.add('hidden')
+  if (e.target.value === ''){
+    cardList.innerHTML = '';
+    createFilmData().then(arr => {
+      arr.forEach(film => {
+        createListItem(film);
+      })
+    });
+  }
+}
 
 function homeButtonHandler(e) {
   headerContainer.classList.add('header-home-bg');
@@ -71,8 +86,14 @@ function queueButtonHandler(e) {
 
 async function searchFormSubmitHandler(e) {
   e.preventDefault();
-  const query = e.target.elements['search-input'].value;
-  const res = await createFilmDataByQuery(query);
-  cardList.innerHTML = '';
-  res.forEach(film => createListItem(film));
+  try{
+    const query = e.target.elements['search-input'].value;
+    const res = await createFilmDataByQuery(query);
+    cardList.innerHTML = '';
+    res.forEach(film => createListItem(film));
+  } catch (e){
+    document.querySelector('.search-error').classList.remove('hidden')
+  }
+
 }
+

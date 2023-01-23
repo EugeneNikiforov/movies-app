@@ -15,10 +15,20 @@ export async function createFilmData() {
             film.name || film.title || film.original_name || film.original_title;
           filmData.first_air_date = releaseDate.slice(0, 4);
           filmData.vote_average = Math.floor(film.vote_average * 10) / 10;
-          filmData.genres = film.genres_name;
+          const arr = [];
+          film.genres_name.forEach(genre => {
+            if (!genre.includes('&')) {
+              arr.push(genre)
+            } 
+          });
+          filmData.genres = arr.join(', ');
+          if (arr.length > 2) {
+            filmData.genres = [...arr.slice(0, 2), 'Other'].join(
+              ', '
+            );
+          } 
           filmsDataArray.push(filmData);
         }
-
     return filmsDataArray;
 }
 
@@ -35,7 +45,16 @@ export async function createFilmDataByQuery(query) {
       film.name || film.title || film.original_name || film.original_title;
     filmData.first_air_date = releaseDate.slice(0, 4);
     filmData.vote_average = Math.floor(film.vote_average * 10) / 10;
-    filmData.genres = film.genres_name;
+    const arr = [];
+    film.genres_name.forEach(genre => {
+      if (!genre.includes('&')) {
+        arr.push(genre);
+      }
+    });
+    filmData.genres = arr.join(', ');
+    if (arr.length > 2) {
+      filmData.genres = [...arr.slice(0, 2), 'Other'].join(', ');
+    }
     filmsDataArray.push(filmData);
   }
   return filmsDataArray;
