@@ -7,17 +7,12 @@
   justify-content: center;
   padding: 60px 0;
 
-  &__list {
-    display: flex;
-  }
-
-  li {
+  &__item {
+    color: black;
     line-height: 40px;
     text-align: center;
     cursor: pointer;
-    &:first-child {
-      margin-left: 0;
-    }
+    text-decoration: none;
   }
 
   &__numb {
@@ -48,8 +43,20 @@
 
     &:hover {
       background-color: #ff6b08;
+      color: #fff;
     }
   }
+
+  // &__arrow-disabled {
+  //   background-color: #f7f7f7;
+  //   border-radius: 10%;
+  //   border: none;
+  //   height: 40px;
+  //   width: 40px;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
 
   &__dots {
     height: 40px;
@@ -63,6 +70,10 @@
       border-radius: 10%;
       border: none;
     }
+
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
   }
 
   &__active {
@@ -73,6 +84,30 @@
   }
 }
 
-// .icon-arrow {
-//   fill: currentColor;
-// }
+.tui-page-btn.tui-is-disabled.tui-first,
+.tui-page-btn.tui-is-disabled.tui-prev.pagination__arrow,
+.tui-page-btn.tui-first,
+.tui-page-btn.tui-is-disabled.tui-last,
+.tui-page-btn.tui-is-disabled.tui-next,
+.tui-page-btn.tui-last {
+  display: none;
+}
+
+.tui-page-btn.tui-prev {
+  background-image: url(../images/footer-team-photo/arrow-left.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+}
+
+.tui-page-btn.tui-next {
+  background-image: url(../images/footer-team-photo/arrow-right.svg);
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: center;
+}
+
+.tui-ico-next,
+.tui-ico-prev {
+  display: none;
+}

@@ -1,5 +1,5 @@
 import { ModalService } from './modal';
-import {createFilmData} from './createFilmData'
+import { createFilmData } from './createFilmData';
 
 const { cardList } = {
   cardList: document.querySelector('.card-list'),
@@ -8,9 +8,8 @@ createFilmData().then(arr => {
   document.querySelector('.loader').classList.add('hidden');
   arr.forEach(film => {
     createListItem(film);
-  })
+  });
 });
-
 
 export function createListItem(elem) {
   const item = document.createElement('li');
